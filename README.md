@@ -1,42 +1,51 @@
 # Process Scheduling Simulator
 
-This project is a C++ program that simulates various CPU scheduling algorithms. It reads a list of processes from an input file, determines the best scheduling algorithm to use based on the process information, and then simulates the execution of the processes using different scheduling algorithms. The results, including average waiting time, average turnaround time, and a Gantt chart for each algorithm, are written to an output file.
+## Project's Title
 
-## Features
+**Process Scheduling Simulator**
 
-- **Scheduling Algorithms Implemented**:
-  - Shortest Job First (SJF)
-  - Longest Job First (LJF)
-  - Shortest Remaining Time First (SRTF)
-  - Round Robin (RR)
+## Project Description
 
-- **Prediction**:
-  - The program predicts the best scheduling algorithm to use based on process information.
+This project is a C++ program that simulates various CPU scheduling algorithms. It reads a list of processes from an input file, predicts the best scheduling algorithm to use based on process information, and then simulates the execution of the processes using different scheduling algorithms. The results, including average waiting time, average turnaround time, and a Gantt chart for each algorithm, are written to an output file.
 
-- **Output**:
-  - Average waiting time and turnaround time for each algorithm.
-  - Gantt chart illustrating the execution order of processes.
+## How to Run the Project
 
-## Files
+### Dependencies
 
-- `main.cpp`: Contains the main code for the program.
-- `input1.txt`: Input file where process details are provided.
-- `output1.txt`: Output file where results are written.
+- A C++ compiler (e.g., `g++`, `clang++`)
+- A terminal or command prompt
 
-## Input File Format
+### Compilation
 
-The input file should be named `input1.txt` and should contain lines with the following format:
+1. Ensure you have a C++ compiler installed on your system.
+2. Download or clone the project files.
+3. Open a terminal and navigate to the directory containing the project files.
+4. Use the following command to compile the code:
+
+```sh
+g++ main.cpp -o scheduler
+```
+
+### Running
+
+1. Ensure the input file `input1.txt` is in the same directory as the compiled executable. The input file should contain process details.
+2. Run the compiled executable with the following command:
+
+```sh
+./scheduler
+```
+
+3. The results will be written to `output1.txt` in the same directory.
+
+### Input File Format
+
+The input file `input1.txt` should contain lines with the following format:
 
 ```
 <Process ID> <Burst Time> <Arrival Time>
 ```
 
-Each line represents a process, with:
-- `Process ID`: A unique identifier for the process.
-- `Burst Time`: The total time required by the process.
-- `Arrival Time`: The time at which the process arrives.
-
-### Example:
+Example:
 
 ```
 1 6 0
@@ -45,84 +54,56 @@ Each line represents a process, with:
 4 3 3
 ```
 
-## Output File Format
+### Output
 
 The output file `output1.txt` will contain:
+
 - The best algorithm predicted based on the process information.
 - Results for each scheduling algorithm, including average waiting time, average turnaround time, and a Gantt chart.
 
-### Example:
+## Internal Working of the Project
 
-```
-Best algorithm predicted is SJF
+### Theory
 
-SJF Scheduling:
-Average Waiting Time: 3.75
-Average Turnaround Time: 8.75
-Gantt Chart:
-| P1 | P4 | P3 | P2 |
-0	6	9	16	24
+CPU scheduling is the basis of multiprogrammed operating systems. By switching the CPU among processes, the operating system can make the computer more productive. Several scheduling algorithms determine the order of process execution. This project implements and compares the following scheduling algorithms:
 
-LJF Scheduling:
-Average Waiting Time: 7.75
-Average Turnaround Time: 12.75
-Gantt Chart:
-| P2 | P3 | P1 | P4 |
-0	8	15	21	24
+1. **Shortest Job First (SJF)**: Selects the process with the smallest burst time.
+2. **Longest Job First (LJF)**: Selects the process with the largest burst time.
+3. **Shortest Remaining Time First (SRTF)**: Preemptive version of SJF that selects the process with the smallest remaining time.
+4. **Round Robin (RR)**: Each process is assigned a fixed time slice (quantum), and processes are rotated in a circular queue.
 
-SRTF Scheduling:
-Average Waiting Time: 3.0
-Average Turnaround Time: 8.0
-Gantt Chart:
-| P1 | P2 | P3 | P4 |
-0	3	6	11	14
+### Prediction Logic
 
-Round Robin Scheduling (Quantum = 2):
-Average Waiting Time: 5.25
-Average Turnaround Time: 10.25
-Gantt Chart:
-| P1 | P2 | P3 | P4 | P1 | P2 | P3 |
-0	2	4	6	8	10	12	14
-```
+The program predicts the best scheduling algorithm by analyzing the process information:
+- If all burst times are the same, it suggests FCFS (First-Come, First-Served).
+- If burst time and arrival time variances are low, it suggests SJF.
+- If burst time variance is low but arrival time variance is high, it suggests SRTF.
+- If there are many long burst time processes, it suggests LJF.
+- Otherwise, it suggests Round Robin.
 
-## How to Compile and Run
+### Implementation
 
-### Prerequisites
+The project includes functions to simulate each scheduling algorithm and calculate average waiting and turnaround times. It also generates a Gantt chart for each algorithm to visualize the execution order.
 
-- A C++ compiler (e.g., g++, clang++)
-- A terminal or command prompt
+- **calculate_wait_turn_time**: Calculates waiting and turnaround times for processes.
+- **print_avg_time**: Prints average waiting and turnaround times to the output file.
+- **print_gantt**: Prints the Gantt chart to the output file.
+- **sjf**: Simulates Shortest Job First scheduling.
+- **ljf**: Simulates Longest Job First scheduling.
+- **srtf**: Simulates Shortest Remaining Time First scheduling.
+- **roundRobin**: Simulates Round Robin scheduling.
+- **predictBestAlgorithm**: Predicts the best scheduling algorithm based on process information.
+- **runScheduler**: Main function to read input, run predictions and simulations, and write output.
 
-### Compilation
+## Learning Takeaways from the Project
 
-Use the following command to compile the code:
+- **Understanding CPU Scheduling Algorithms**: Gained a deep understanding of various CPU scheduling algorithms and their implementation details.
+- **Algorithm Analysis**: Learned how to analyze process information to determine the most suitable scheduling algorithm.
+- **File I/O in C++**: Improved skills in handling file input and output operations in C++.
+- **Code Organization**: Practiced organizing code into functions for modularity and readability.
+- **Gantt Chart Visualization**: Learned how to represent process execution visually using Gantt charts.
 
-```sh
-g++ main.cpp -o scheduler
-```
+## Resources/References
 
-### Running
-
-Run the compiled executable:
-
-```sh
-./scheduler
-```
-
-Ensure that `input1.txt` is in the same directory as the executable. The results will be written to `output1.txt`.
-
-## Function Overview
-
-- **calculate_wait_turn_time(vector<Process>& processes)**: Calculates the waiting and turnaround times for processes.
-- **print_avg_time(vector<Process>& processes, ofstream& outputFile)**: Prints the average waiting and turnaround times to the output file.
-- **print_gantt(vector<Execution>& executions, ofstream& outputFile)**: Prints the Gantt chart to the output file.
-- **sjf(vector<Process> processes, ofstream& outputFile)**: Simulates Shortest Job First scheduling.
-- **ljf(vector<Process> processes, ofstream& outputFile)**: Simulates Longest Job First scheduling.
-- **srtf(vector<Process> processes, ofstream& outputFile)**: Simulates Shortest Remaining Time First scheduling.
-- **roundRobin(vector<Process> processes, int quantum, ofstream& outputFile)**: Simulates Round Robin scheduling.
-- **predictBestAlgorithm(vector<Process>& processes)**: Predicts the best scheduling algorithm based on process information.
-- **runScheduler()**: Main function to read input, run predictions and simulations, and write output.
-
-## Notes
-
-- Ensure the input file `input1.txt` is properly formatted.
-- The output file `output1.txt` will be overwritten each time the program runs.
+- [GeeksforGeeks: CPU Scheduling Algorithms](https://www.geeksforgeeks.org/cpu-scheduling-in-operating-systems/)
+- [Wikipedia: CPU Scheduling](https://en.wikipedia.org/wiki/Scheduling_(computing))
