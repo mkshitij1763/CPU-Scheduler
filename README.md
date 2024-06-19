@@ -126,8 +126,3 @@ Ensure that `input1.txt` is in the same directory as the executable. The results
 
 - Ensure the input file `input1.txt` is properly formatted.
 - The output file `output1.txt` will be overwritten each time the program runs.
-- This program is designed for educational purposes to demonstrate different CPU scheduling algorithms.
-
-## License
-
-This project is open source and available under the MIT License.
