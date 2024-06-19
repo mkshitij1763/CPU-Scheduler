@@ -1,0 +1,30 @@
+Best algorithm predicted is Round Robin
+
+SJF Scheduling:
+Average Waiting Time: 2.4
+Average Turnaround Time: 5.6
+Gantt Chart:
+| P1 | P3 | P5 | P2 | P4 |
+0	2	4	6	11	17
+
+LJF Scheduling:
+Average Waiting Time: 5.4
+Average Turnaround Time: 8.6
+Gantt Chart:
+| P1 | P4 | P2 | P3 | P5 |
+0	2	8	13	15	17
+
+SRTF Scheduling:
+Average Waiting Time: 2.4
+Average Turnaround Time: 5.6
+Gantt Chart:
+| P1 | P3 | P3 | P5 | P5 | P2 | P2 | P2 | P2 | P2 | P4 | P4 | P4 | P4 | P4 | P4 |
+0	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17
+
+Round Robin Scheduling (Quantum = 2):
+Average Waiting Time: 4.2
+Average Turnaround Time: 7.4
+Gantt Chart:
+| P1 | P3 | P4 | P2 | P5 | P4 | P2 | P4 | P2 |
+0	2	4	6	8	10	12	14	16	17
+
