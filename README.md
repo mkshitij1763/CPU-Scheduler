@@ -1,3 +1,5 @@
+Yes, you need to update the compilation command in your README file to reflect the correct filename. Here is the updated README file:
+
 # Process Scheduling Simulator
 
 ## Project's Title
@@ -23,7 +25,7 @@ This project is a C++ program that simulates various CPU scheduling algorithms. 
 4. Use the following command to compile the code:
 
 ```sh
-g++ main.cpp -o scheduler
+g++ cpu_scheduler.cpp -o scheduler
 ```
 
 ### Running
