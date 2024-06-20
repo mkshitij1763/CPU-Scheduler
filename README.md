@@ -1,5 +1,3 @@
-Yes, you need to update the compilation command in your README file to reflect the correct filename. Here is the updated README file:
-
 # Process Scheduling Simulator
 
 ## Project's Title
